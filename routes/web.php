@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 
 /*
@@ -41,14 +41,14 @@ Route::controller(CategoryController::class)->group(function () {
     Route::delete('category/delete/{id}', 'destroy')->name('categories.destroy');
 });
 
-// Route::controller(ProductTypeController::class)->group(function () {
-
-//     Route::get('product_type/create', 'create')->name('product_type.create');
-//     Route::post('product_types', 'store')->name('product_types-add');
-//     Route::get('product_types', 'index')->name('product_types-index');
-//     Route::get('product_type/{id}', 'show');
-//     Route::post('product_type', 'store');
-// });
+Route::controller(productController::class)->group(function () {
+    Route::get('products', 'index')->name('products-index');
+    Route::get('product/create', 'create')->name('product-create');
+    Route::post('products', 'store')->name('product-add');
+    Route::get('product/{id}', 'show')->name('product.show');
+    Route::post('product/update/{id}', 'update')->name('product-update');
+    Route::delete('product/delete/{id}', 'destroy')->name('products.destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
