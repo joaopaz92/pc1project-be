@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
+use Carbon\Carbon; 
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 
@@ -36,18 +38,20 @@ class CategoryController extends Controller
         ]);
 
         if($request->file('picture')){
-            $picture_name=str_replace(' ', '_', mb_strtolower(request('name'), 'UTF-8'));
+            $picture_name=Carbon::now()->format('Ymd_His')."_".str_replace(' ', '_', mb_strtolower(request('name'), 'UTF-8'));
             $picture_file = $picture_name.".".$request->file('picture')->getClientOriginalExtension();
             $picture = $request->file('picture')->move(public_path("\img"), $picture_file);
             $picture_url  = env('APP_URL')."/img/".$picture_file;
         } else {
+            $picture = NULL;
             $picture_url = NULL;
         }
         
         $category = new Category;
         
         $category->name = request('name');
-        $category->picture = $picture_url;
+        $category->picture_url  = $picture_url;
+        $category->picture_path = $picture;
         $category->save();
 
         return redirect(route('categories-index'));
@@ -79,37 +83,38 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $category = Category::findOrFail($request->id);
+        $category  = Category::findOrFail($id);
 
         if($request->file('picture')){
-            $picture_name = str_replace(' ', '_', mb_strtolower(request('name'), 'UTF-8'));
+            if (File::exists($category->picture_path)) {
+                $deletedFile = File::delete($category->picture_path);
+            }
+            $picture_name = Carbon::now()->format('Ymd_His')."_".str_replace(' ', '_', mb_strtolower(request('name'), 'UTF-8'));
             $picture_file = $picture_name.".".$request->file('picture')->getClientOriginalExtension();
             $picture      = $request->file('picture')->move(public_path("\img"), $picture_file);
             $picture_url  = env('APP_URL')."/img/".$picture_file;
         } else {
-            $picture_url = NULL;
+            $picture        = NULL;
+            $picture_url    = NULL;
         }
-
-        $category->name     = request('name');
-        $category->picture  = $picture_url;
         
-        //$category->update();
-        if ($category->updateOrFail($category) === false) {
-            return response(
-                "Couldn't update the user with id {$request->id}",
-                Response::HTTP_BAD_REQUEST
-            );
-        
-        }
-        return response($category);
-
+        $category->name = request('name');
+        $category->picture_url  = $picture_url;
+        $category->picture_path = $picture;
+        $category->save();        
+        return redirect(route('categories-index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category  = Category::findOrFail($id);
+        if (File::exists($category->picture_path)) {
+            $deletedFile = File::delete($category->picture_path);
+        }
+        $category->delete();
+        return redirect(route('categories-index'));
     }
 }

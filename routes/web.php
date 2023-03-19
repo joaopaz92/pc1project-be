@@ -33,13 +33,12 @@ Route::get('/product_ops', function () {
 });
 
 Route::controller(CategoryController::class)->group(function () {
-
+    Route::get('categories', 'index')->name('categories-index');
     Route::get('category/create', 'create')->name('category-create');
     Route::post('categories', 'store')->name('category-add');
-    Route::get('categories', 'index')->name('categories-index');
     Route::get('category/{id}', 'show')->name('category.show');
     Route::post('category/update/{id}', 'update')->name('category-update');
-    Route::post('category', 'store');
+    Route::delete('category/delete/{id}', 'destroy')->name('categories.destroy');
 });
 
 // Route::controller(ProductTypeController::class)->group(function () {

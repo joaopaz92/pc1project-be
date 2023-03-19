@@ -20,8 +20,12 @@
                             <td>{{$category->name}}</td>
                             <td>
                                 <div class="m-n2">
-                                    <a href="{{route('category.show', $category->id)}}" type="button" class="btn btn-square btn-warning m-2"><i class="fa fa-edit"></i></a>
-                                    <button type="button" class="btn btn-square btn-danger m-2"><i class="fa fa-trash"></i></button>
+                                    <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
+                                        <a href="{{route('category.show', $category->id)}}" type="button" class="btn btn-square btn-warning m-2"><i class="fa fa-edit"></i></a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-square btn-danger m-2" ><i class="fa fa-trash"></i></button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

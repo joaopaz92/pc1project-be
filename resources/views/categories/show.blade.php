@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 justify-content-end">
-                        <img class="img-fluid mb-4" src="{{$category->picture}}" style="width: 100px; height: 100px;">
+                        <img class="img-fluid mb-4" src="{{$category->picture_url}}" style="width: 100px; height: 100px;">
                     </div>
                 </div>
                 <div class="row">
