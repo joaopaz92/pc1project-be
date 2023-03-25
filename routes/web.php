@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TrademarkController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +26,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/product_type_ops', function () {
-    return view('product_type_ops');
-});
-
-Route::get('/product_ops', function () {
-    return view('product_ops');
-});
-
 Route::controller(CategoryController::class)->group(function () {
     Route::get('categories', 'index')->name('categories-index');
     Route::get('category/create', 'create')->name('category-create');
@@ -39,6 +33,15 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('category/{id}', 'show')->name('category.show');
     Route::post('category/update/{id}', 'update')->name('category-update');
     Route::delete('category/delete/{id}', 'destroy')->name('categories.destroy');
+});
+
+Route::controller(TrademarkController::class)->group(function () {
+    Route::get('trademarks', 'index')->name('trademarks-index');
+    Route::get('trademark/create', 'create')->name('trademark-create');
+    Route::post('trademarks', 'store')->name('trademark-add');
+    Route::get('trademark/{id}', 'show')->name('trademark.show');
+    Route::post('trademark/update/{id}', 'update')->name('trademark-update');
+    Route::delete('trademark/delete/{id}', 'destroy')->name('trademarks.destroy');
 });
 
 Route::controller(productController::class)->group(function () {
