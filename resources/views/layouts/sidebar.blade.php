@@ -25,6 +25,15 @@
                 <a href="{{route('trademarks-index')}}" class="dropdown-item">List of all trademark</a>
             </div>
         </div>
+
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-bookmark me-2"></i>Models</a>
+            <div class="dropdown-menu bg-transparent border-0">
+                <a href="{{route('trademarkmodel-create')}}" class="dropdown-item">Add new model</a>
+                <a href="{{route('trademarkmodels-index')}}" class="dropdown-item">List of all models</a>
+            </div>
+        </div>
+
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Products</a>
             <div class="dropdown-menu bg-transparent border-0">

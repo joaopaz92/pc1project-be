@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TrademarkController;
+use App\Http\Controllers\TrademarkModelController;
 use App\Http\Controllers\ProductController;
 
 
@@ -42,6 +43,15 @@ Route::controller(TrademarkController::class)->group(function () {
     Route::get('trademark/{id}', 'show')->name('trademark.show');
     Route::post('trademark/update/{id}', 'update')->name('trademark-update');
     Route::delete('trademark/delete/{id}', 'destroy')->name('trademarks.destroy');
+});
+
+Route::controller(TrademarkModelController::class)->group(function () {
+    Route::get('trademarkmodels', 'index')->name('trademarkmodels-index');
+    Route::get('trademarkmodel/create', 'create')->name('trademarkmodel-create');
+    Route::post('trademarkmodels', 'store')->name('trademarkmodel-add');
+    Route::get('trademarkmodel/{id}', 'show')->name('trademarkmodel.show');
+    Route::post('trademarkmodel/update/{id}', 'update')->name('trademarkmodel-update');
+    Route::delete('trademarkmodel/delete/{id}', 'destroy')->name('trademarkmodels.destroy');
 });
 
 Route::controller(productController::class)->group(function () {
