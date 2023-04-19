@@ -54,7 +54,7 @@ Route::controller(TrademarkModelController::class)->group(function () {
     Route::delete('trademarkmodel/delete/{id}', 'destroy')->name('trademarkmodels.destroy');
 });
 
-Route::controller(productController::class)->group(function () {
+Route::controller(ProductController::class)->group(function () {
     Route::get('products', 'index')->name('products-index');
     Route::get('product/create', 'create')->name('product-create');
     Route::post('products', 'store')->name('product-add');

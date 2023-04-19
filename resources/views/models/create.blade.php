@@ -5,8 +5,8 @@
 @section('content')
 <div class="container-fluid pt-4 px-4">
     <div class="row bg-secondary rounded align-items-center mx-0">  
-        <h3 class="mb-4 mt-4 justify-content-center">Create Trademark - Model</h3>
-        <form action="{{route('trademarkmodel-add')}}" method="post" enctype="multipart/form-data">
+        <h3 class="mb-4 mt-4 justify-content-center">Create Product</h3>
+        <form action="{{route('product-add')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-4 col-xl-4 justify-content mx-0">

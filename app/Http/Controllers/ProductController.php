@@ -16,8 +16,6 @@ class ProductController extends Controller
         $products = Product::paginate(5);
         return view('products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-
-        //
     }
 
     /**
@@ -26,7 +24,6 @@ class ProductController extends Controller
     public function create()
     {
         return view('products.create');
-        //
     }
 
     /**

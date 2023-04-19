@@ -16,10 +16,15 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('name');
-            $table->string('trademark')->nullable();
-            $table->string('model')->nullable();
-            $table->text('detail')->nullable();
+            $table->unsignedBigInteger('trademark_id');
+            $table->foreign('trademark_id')->references('id')->on('trademarks')->onDelete('cascade');
+            $table->unsignedBigInteger('trademarkmodel_id');
+            $table->foreign('trademarkmodel_id')->references('id')->on('trademark_models')->onDelete('cascade');
+            $table->text('description')->nullable();
+            $table->string('product_pict_path')->nullable();
+            $table->string('product_pict_url')->nullable();
             $table->float('price', 8, 2);
+            $table->integer('stock');
             $table->timestamps();
         });
     }
