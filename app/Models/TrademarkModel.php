@@ -9,4 +9,12 @@ class TrademarkModel extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function trademarks(): BelongsTo
+    {
+        return $this->belongsTo(Trademark::class);
+    }
 }

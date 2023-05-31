@@ -52,6 +52,15 @@ class TrademarkController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     */
+    public function get_associated_models($id)
+    {
+        $models = Trademark::findOrFail($id)->models;
+        return ['models' => $models];
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Trademark $trademark)

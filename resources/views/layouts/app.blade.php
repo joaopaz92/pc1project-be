@@ -34,7 +34,9 @@
         <link href="{{env('APP_URL')}}/css/style.css" rel="stylesheet">
 
         <!-- Scripts -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('other-scripts')
     </head>
     <body>
         <div class="container-fluid position-relative d-flex p-0">

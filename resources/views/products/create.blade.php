@@ -1,5 +1,6 @@
 <?php
     $categories=\App\Models\Category::all();
+    $trademarks=\App\Models\Trademark::all();
 ?>
 @extends('layouts.app')
 @section('content')
@@ -22,7 +23,7 @@
                                 <label for="inputCategory" class="col-form-label">Category</label> 
                             </div>
                             <div class="col-sm-10">
-                                <select class="form-select form-select-lg form-floating mb-3" aria-label="Default select example">
+                                <select class="form-select form-select-lg form-floating mb-3" aria-label="Default select example" onchange="val()">
                                             <option selected="">Select one category</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -34,11 +35,19 @@
                 </div>
                 <div class="row">
                     <div class="col-4 col-xl-4 justify-content mx-0">
-                        <div class="form-floating mb-3">
-                            <input name="trademark" type="text" class="form-control" id="floatingInput"
-                            placeholder="Trademark">
-                            <label for="floatingInput">Trademark</label>
-                        </div>
+                        <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="selTrademark" class="col-form-label">Trademark</label> 
+                                </div>
+                                <div class="col-sm-9">
+                                    <select name="trademark" id="trademark_id" class="form-select form-select-lg form-floating mb-3" aria-label="Default select example">
+                                                <option selected="" value="#">Select one trademark</option>
+                                                @foreach($trademarks as $trademark)
+                                                    <option value="{{$trademark->id}}">{{$trademark->name}}</option>
+                                                @endforeach
+                                    </select>
+                                </div>
+                            </div>
                     </div>
                     <div class="col-4 col-xl-4 justify-content mx-0">
                         <div class="form-floating mb-3">
@@ -63,5 +72,29 @@
         </form>
     </div>
 </div>
-
 @endsection
+
+@push('other-scripts')
+<script>
+    function displayNum() {
+        console.log($("select#trademark_id").val());
+    }
+    $("select#trademark_id").change(displayNum);
+    // $('#trademark_id').change(function(){
+    //     console.log($(this).val());
+    // })
+    // var trademark = $('#trademark').val();
+    // console.log(trademark)
+
+    // $.ajax({
+    //     url: "/gettrademarkassocmodels/",
+    //     data: {
+    //     zipcode: 97201
+    //     },
+    //     success: function( result ) {
+    //     $( "#weather-temp" ).html( "<strong>" + result + "</strong> degrees" );
+    //     }
+    // });
+    // console.log('do something in js')
+</script>
+@endpush
