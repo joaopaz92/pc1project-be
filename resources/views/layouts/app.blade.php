@@ -89,6 +89,9 @@
         <script src="{{env('APP_URL')}}/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
         <!-- Template Javascript -->
+        @routes
         <script src="{{env('APP_URL')}}/js/main.js"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        @yield('scripts')
     </body>
 </html>

@@ -41,7 +41,7 @@ Route::controller(TrademarkController::class)->group(function () {
     Route::get('trademark/create', 'create')->name('trademark-create');
     Route::post('trademarks', 'store')->name('trademark-add');
     Route::get('trademark/{id}', 'show')->name('trademark.show');
-    Route::get('gettrademarkassocmodels/{id}', 'show')->name('get-models');
+    Route::get('gettrademarkassocmodels/{id}', 'get_associated_models')->name('get-models');
     Route::post('trademark/update/{id}', 'update')->name('trademark-update');
     Route::delete('trademark/delete/{id}', 'destroy')->name('trademarks.destroy');
 });

@@ -57,7 +57,7 @@ class TrademarkController extends Controller
     public function get_associated_models($id)
     {
         $models = Trademark::findOrFail($id)->models;
-        return ['models' => $models];
+        return $models;
     }
 
     /**
