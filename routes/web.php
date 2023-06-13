@@ -62,6 +62,7 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('product/{id}', 'show')->name('product.show');
     Route::post('product/update/{id}', 'update')->name('product-update');
     Route::delete('product/delete/{id}', 'destroy')->name('products.destroy');
+    Route::get('generateref', 'generate_reference')->name('gen-ref');
 });
 
 Route::middleware('auth')->group(function () {

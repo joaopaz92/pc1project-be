@@ -12,9 +12,8 @@
                 <div class="row">
                     <div class="col-4 col-xl-4 justify-content mx-0">
                         <div class="form-floating mb-3">
-                            <input name="name" type="text" class="form-control" id="floatingInput"
-                            placeholder="Computer">
-                            <label for="floatingInput">Name</label>
+                            <input name="reference" type="text" class="form-control" id="floatingInputRef" placeholder="Reference" readonly>
+                            <label for="floatingInputRef">Reference</label>
                         </div>
                     </div>
                     <div class="col-4 col-xl-4 justify-content mx-0">
@@ -35,6 +34,12 @@
                 </div>
                 <div class="row">
                     <div class="col-4 col-xl-4 justify-content mx-0">
+                        <div class="form-floating mb-3">
+                            <input name="name" type="text" class="form-control" id="floatingInput" placeholder="Name">
+                            <label for="floatingInput">Name</label>
+                        </div>
+                    </div>
+                    <div class="col-4 col-xl-4 justify-content mx-0">
                         <div class="row">
                             <div class="col-sm-3">
                                 <label for="selTrademark" class="col-form-label">Trademark</label> 
@@ -49,20 +54,20 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-4 col-xl-4 justify-content mx-0">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <label for="selTrademark" class="col-form-label">Model</label> 
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-10">
                                 <select name="trademarkmodel_id" id="model-drop" class="form-select form-select-lg form-floating mb-3" aria-label="Default select example">
                                     <option selected="" value="#">Select one model</option>
                                 </select>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
+                    </div>                    
                     <div class="col-4 col-xl-4 justify-content mx-0">
                         <div class="form-floating mb-3">
                             <input name="price" type="text" class="form-control" id="floatingInput"
@@ -70,6 +75,9 @@
                             <label for="floatingInput">Price</label>
                         </div>
                     </div>
+
+                </div>
+                <div class="row">
                     <div class="col-4 col-xl-4 justify-content mx-0">
                         <div class="form-floating mb-3">
                             <input name="stock" type="text" class="form-control" id="floatingInput"
@@ -77,8 +85,6 @@
                             <label for="floatingInput">Stock</label>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-4 col-xl-4 justify-content mx-0">
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Upload a product picture</label>
@@ -99,6 +105,20 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function () {
+            var ref_route = "{{ route('gen-ref') }}";
+            $.ajax({
+                    url: ref_route,
+                    type:"GET",
+                    success: function (data) {
+                        $('#floatingInputRef').val(data);
+                    },
+                    error:  function () {
+                        $('#floatingInputRef').val('');
+                    }
+                })
+
+            
+
             $('#trademark-drop').on('change', function () {
                 var idTrademark = this.value;
                 var route = "{{ route('get-models', 'id') }}";
