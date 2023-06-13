@@ -6,7 +6,7 @@
 <div class="container-fluid pt-4 px-4">
     <div class="row bg-secondary rounded align-items-center mx-0">  
         <h3 class="mb-4 mt-4 justify-content-center">Create Product</h3>
-        <form action="{{route('product-add')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('trademarkmodel-add')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-4 col-xl-4 justify-content mx-0">
@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-sm-10">
                             <select name="trademark_id" class="form-select form-select-lg form-floating mb-3" aria-label="Default select example">
-                                        <option selected="">Select one category</option>
+                                        <option selected="">Select one trademark</option>
                                         @foreach($trademarks as $trademark)
                                             <option value="{{$trademark->id}}">{{$trademark->name}}</option>
                                         @endforeach
