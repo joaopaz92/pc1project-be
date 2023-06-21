@@ -1,5 +1,5 @@
 <?php
-    $categories=\App\Models\Category::all();
+    $categories=\App\Models\Category::paginate(3);
     $trademarks=\App\Models\Trademark::all();
     $trademarkmodels=\App\Models\TrademarkModel::all();
 ?>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-sm-10">
                                 <select name="category_id" class="form-select form-select-lg form-floating mb-3" aria-label="Default select example" onchange="myFunction(this.value)">
-                                            <option selected="">Select one category</option>
+                                            <option value="0" selected>Select one category</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}" {{ ( $product->category_id == $category->id) ? 'selected' : '' }}> {{$category->name}} </option>
                                             @endforeach
@@ -123,7 +123,7 @@
                     url: route,
                     type:"GET",
                     success: function (data) {
-                        $('#model-drop').empty().append($('<option>').val("#").text("Select one model"));
+                        $('#model-drop').empty().append($('<option>').val("0").text("Select one model"));
                         $.each(data, function( index, value ) {
 
                             console.log(data[index].id, data[index].name)
@@ -134,7 +134,7 @@
                         // $('#userList').html(data);
                     },
                     error:  function () {
-                        $('#model-drop').empty().append($('<option>').val("#").text("Select one model"));
+                        $('#model-drop').empty().append($('<option>').val("0").text("Select one model"));
                     }
                 })
                 

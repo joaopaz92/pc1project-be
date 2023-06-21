@@ -23,7 +23,7 @@
                             </div>
                             <div class="col-sm-10">
                                 <select name="category_id" class="form-select form-select-lg form-floating mb-3" aria-label="Default select example" onchange="myFunction(this.value)">
-                                            <option selected="">Select one category</option>
+                                            <option value="0" selected="">Select one category</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <select name="trademark_id" id="trademark-drop" class="form-select form-select-lg form-floating mb-3" aria-label="Default select example">
-                                            <option selected="" value="#">Select one trademark</option>
+                                            <option selected="" value="0">Select one trademark</option>
                                             @foreach($trademarks as $trademark)
                                                 <option value="{{$trademark->id}}">{{$trademark->name}}</option>
                                             @endforeach
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-sm-10">
                                 <select name="trademarkmodel_id" id="model-drop" class="form-select form-select-lg form-floating mb-3" aria-label="Default select example">
-                                    <option selected="" value="#">Select one model</option>
+                                    <option selected="" value="0">Select one model</option>
                                 </select>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                     url: route,
                     type:"GET",
                     success: function (data) {
-                        $('#model-drop').empty().append($('<option>').val("#").text("Select one model"));
+                        $('#model-drop').empty().append($('<option>').val("0").text("Select one model"));
                         $.each(data, function( index, value ) {
 
                             console.log(data[index].id, data[index].name)
@@ -138,7 +138,7 @@
                         // $('#userList').html(data);
                     },
                     error:  function () {
-                        $('#model-drop').empty().append($('<option>').val("#").text("Select one model"));
+                        $('#model-drop').empty().append($('<option>').val("0").text("Select one model"));
                     }
                 })
                 
