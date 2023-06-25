@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TrademarkController;
+use App\Http\Controllers\TrademarkModelController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +27,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/product_type_ops', function () {
-    return view('product_type_ops');
-});
-
-Route::get('/product_ops', function () {
-    return view('product_ops');
-});
-
 Route::controller(CategoryController::class)->group(function () {
     Route::get('categories', 'index')->name('categories-index');
     Route::get('category/create', 'create')->name('category-create');
@@ -41,14 +36,34 @@ Route::controller(CategoryController::class)->group(function () {
     Route::delete('category/delete/{id}', 'destroy')->name('categories.destroy');
 });
 
-// Route::controller(ProductTypeController::class)->group(function () {
+Route::controller(TrademarkController::class)->group(function () {
+    Route::get('trademarks', 'index')->name('trademarks-index');
+    Route::get('trademark/create', 'create')->name('trademark-create');
+    Route::post('trademarks', 'store')->name('trademark-add');
+    Route::get('trademark/{id}', 'show')->name('trademark.show');
+    Route::get('gettrademarkassocmodels/{id}', 'get_associated_models')->name('get-models');
+    Route::post('trademark/update/{id}', 'update')->name('trademark-update');
+    Route::delete('trademark/delete/{id}', 'destroy')->name('trademarks.destroy');
+});
 
-//     Route::get('product_type/create', 'create')->name('product_type.create');
-//     Route::post('product_types', 'store')->name('product_types-add');
-//     Route::get('product_types', 'index')->name('product_types-index');
-//     Route::get('product_type/{id}', 'show');
-//     Route::post('product_type', 'store');
-// });
+Route::controller(TrademarkModelController::class)->group(function () {
+    Route::get('trademarkmodels', 'index')->name('trademarkmodels-index');
+    Route::get('trademarkmodel/create', 'create')->name('trademarkmodel-create');
+    Route::post('trademarkmodels', 'store')->name('trademarkmodel-add');
+    Route::get('trademarkmodel/{id}', 'show')->name('trademarkmodel.show');
+    Route::post('trademarkmodel/update/{id}', 'update')->name('trademarkmodel-update');
+    Route::delete('trademarkmodel/delete/{id}', 'destroy')->name('trademarkmodels.destroy');
+});
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('products', 'index')->name('products-index');
+    Route::get('product/create', 'create')->name('product-create');
+    Route::post('products', 'store')->name('product-add');
+    Route::get('product/{id}', 'show')->name('product.show');
+    Route::post('product/update/{id}', 'update')->name('product-update');
+    Route::delete('product/delete/{id}', 'destroy')->name('products.destroy');
+    Route::get('generateref', 'generate_reference')->name('gen-ref');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

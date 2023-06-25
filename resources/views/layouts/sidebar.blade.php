@@ -12,28 +12,36 @@
     <div class="navbar-nav w-100">
         <a href="/dashboard" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Dashboard</a>
         <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Categories</a>
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-list me-2"></i>Categories</a>
             <div class="dropdown-menu bg-transparent border-0">
                 <a href="{{route('category-create')}}" class="dropdown-item">Add new category</a>
                 <a href="{{route('categories-index')}}" class="dropdown-item">List of all categories</a>
             </div>
         </div>
-<!--         <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Products</a>
-            <div class="dropdown-menu bg-transparent border-0">
-                <a href="/product_type_ops" class="dropdown-item">Product Type</a>
-                <a href="/product_ops" class="dropdown-item">Product</a>
-            </div>
-        </div> -->
         <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-registered me-2"></i>Trademarks</a>
             <div class="dropdown-menu bg-transparent border-0">
-                <a href="button.html" class="dropdown-item">Buttons</a>
-                <a href="typography.html" class="dropdown-item">Typography</a>
-                <a href="element.html" class="dropdown-item">Other Elements</a>
+                <a href="{{route('trademark-create')}}" class="dropdown-item">Add new trademark</a>
+                <a href="{{route('trademarks-index')}}" class="dropdown-item">List of all trademark</a>
             </div>
         </div>
 
-        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-bookmark me-2"></i>Models</a>
+            <div class="dropdown-menu bg-transparent border-0">
+                <a href="{{route('trademarkmodel-create')}}" class="dropdown-item">Add new model</a>
+                <a href="{{route('trademarkmodels-index')}}" class="dropdown-item">List of all models</a>
+            </div>
+        </div>
+
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Products</a>
+            <div class="dropdown-menu bg-transparent border-0">
+                <a href="{{route('product-create')}}" class="dropdown-item">Add new product</a>
+                <a href="{{route('products-index')}}" class="dropdown-item">List of all products</a>
+            </div>
+        </div>
+
+      <!-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a> -->
     </div>
 </nav>
