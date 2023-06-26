@@ -42,6 +42,13 @@
             </div>
         </div>
 
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-id-badge me-2"></i>Class Sign-Ups</a>
+            <div class="dropdown-menu bg-transparent border-0">
+                <a href="{{route('lessons-index')}}" class="dropdown-item">List of all signups</a>
+            </div>
+        </div>
+
       <!-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a> -->
     </div>
 </nav>
