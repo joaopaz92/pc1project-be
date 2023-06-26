@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TrademarkController;
 use App\Http\Controllers\TrademarkModelController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LessonController;
 
 
 /*
@@ -63,6 +64,14 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('product/update/{id}', 'update')->name('product-update');
     Route::delete('product/delete/{id}', 'destroy')->name('products.destroy');
     Route::get('generateref', 'generate_reference')->name('gen-ref');
+});
+
+Route::controller(LessonController::class)->group(function () {
+    Route::get('lessons', 'index')->name('lessons-index');
+    Route::get('lesson/{id}', 'show')->name('lesson.show');
+    Route::post('lesson/update/{id}', 'update')->name('lesson-update');
+    Route::post('lesson/approve/{id}', 'approve')->name('lesson-approve');
+    Route::delete('lesson/delete/{id}', 'destroy')->name('lessons.destroy');
 });
 
 Route::middleware('auth')->group(function () {
