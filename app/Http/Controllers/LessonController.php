@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lesson;
+use App\Mail\ConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 class LessonController extends Controller
 {
@@ -27,6 +29,14 @@ class LessonController extends Controller
         $inscricao->aceita = true;
         $inscricao->save();
 
+        $data = array("name" => $inscricao->nome,
+                  "message"  => "A sua inscrição foi confirmada !"
+                );
+        
+        Mail::to($inscricao->email)->send(
+            new ConfirmationMail($data)
+        );
+        
         return redirect(route('lessons-index'));
 
     }
