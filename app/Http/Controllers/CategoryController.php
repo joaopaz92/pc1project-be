@@ -51,7 +51,7 @@ class CategoryController extends Controller
         
         $category->name = request('name');
         $category->picture_url  = $picture_url;
-        $category->product_pict_path = $picture;
+        $category->picture_path = $picture;
         $category->save();
 
         return redirect(route('categories-index'));
